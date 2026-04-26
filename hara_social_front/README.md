@@ -1,16 +1,85 @@
-# React + Vite
+# HaraSocial - نظام الشات والتواصل الاجتماعي
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## نظرة عامة
 
-Currently, two official plugins are available:
+HaraSocial هو تطبيق تواصل اجتماعي متكامل يتضمن نظام شات فوري، إدارة الأصدقاء، والبحث عن المستخدمين. التطبيق مبني باستخدام **React** للواجهة الأمامية و **PHP** للواجهة الخلفية مع **WebSocket** للتواصل الفوري.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## التقنيات المستخدمة
 
-## React Compiler
+### الواجهة الأمامية (Frontend)
+- **React 18** - بناء واجهة المستخدم
+- **Zustand** - إدارة الحالة (State Management)
+- **Axios** - طلبات HTTP
+- **Tailwind CSS** - التصميم والتنسيق
+- **React Router DOM** - التنقل بين الصفحات
+- **WebSocket API** - التواصل الفوري
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### الواجهة الخلفية (Backend)
+- **PHP 8.x** - لغة البرمجة
+- **Ratchet** - مكتبة WebSocket لـ PHP
+- **MySQL** - قاعدة البيانات
+- **PDO** - التعامل مع قاعدة البيانات
 
-## Expanding the ESLint configuration
+## المميزات
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### نظام المصادقة والاتصال
+- تسجيل الدخول / إنشاء حساب
+- اتصال WebSocket فوري بعد تسجيل الدخول
+- إعادة اتصال تلقائية عند قطع الاتصال
+- تحديث حالة المستخدم (متصل/غير متصل)
+
+### نظام الشات
+- إرسال واستقبال الرسائل الفورية
+- حالة الكتابة (Typing indicator)
+- عرض المستخدمين المتصلين
+- حفظ الرسائل في قاعدة البيانات
+
+### إدارة الأصدقاء
+- إرسال طلبات الصداقة
+- قبول / رفض طلبات الصداقة
+- عرض قائمة الأصدقاء
+- البحث عن مستخدمين جدد
+
+### ملفات المستخدم
+- عرض صفحة البروفايل
+- رفع صورة شخصية
+- تحديث البيانات الشخصية
+
+## هيكلية المشروع
+hara-social/
+├── frontend/
+│ ├── src/
+│ │ ├── components/
+│ │ │ ├── chat/
+│ │ │ │ ├── ChatComponent.jsx
+│ │ │ │ └── OnlineFriends.jsx
+│ │ │ ├── friends/
+│ │ │ │ ├── FriendCard.jsx
+│ │ │ │ ├── FriendRequests.jsx
+│ │ │ │ ├── FriendRequestsList.jsx
+│ │ │ │ └── SearchUsers.jsx
+│ │ │ └── common/
+│ │ ├── services/
+│ │ │ ├── websocketService.js
+│ │ │ ├── friendService.js
+│ │ │ └── authService.js
+│ │ ├── stores/
+│ │ │ ├── chatStore.js
+│ │ │ ├── friendStore.js
+│ │ │ └── authStore.js
+│ │ ├── App.jsx
+│ │ └── index.js
+│ ├── package.json
+│ └── tailwind.config.js
+├── backend/
+│ ├── api/
+│ │ ├── friends.php
+│ │ ├── search.php
+│ │ └── auth.php
+│ ├── websocket/
+│ │ ├── ChatHandler.php
+│ │ └── server.php
+│ ├── config/
+│ │ └── database.php
+│ └── vendor/
+└── README.md
